@@ -50,10 +50,10 @@
     <div class="container text-center my-5">
         <img src="nibc.jpg" alt="Church Logo" class="img-fluid" style="max-width: 150px;">
         <h1 class="church-name">NEW INSIGHT BAPTIST CHURCH</h1>
-        <p class="mt-3"><strong>Vision:</strong>Lorem ipsumns djd dneje rjene rjdndbdjd d djdbend djdbe ebehd djebe ejebe e d</p>
-        <p><strong>Mission:</strong>Lorem iosum jdjdjr djr djr je rje e rnr rje rjejejj3e ebejrnrn</p>
+        <p class="mt-3"><strong>Vision:</strong> Lorem ipsum dolor sit amet.</p>
+        <p><strong>Mission:</strong> Lorem ipsum dolor sit amet.</p>
 
-        <button class="scan-btn mt-4" onclick="scanQRCode()">Scan Bulletin QR</button>
+        <button class="scan-btn mt-4" id="scanButton">Scan Bulletin QR</button>
 
         <!-- QR Code Reader -->
         <div id="reader"></div>
@@ -69,13 +69,12 @@
     </div>
 
     <script>
-        let html5QrCode; // Declare the QR code variable globally
+        document.getElementById("scanButton").addEventListener("click", scanQRCode);
 
         // QR Code Scanner
         function scanQRCode() {
-            if (!html5QrCode) {
-                html5QrCode = new Html5Qrcode("reader");
-            }
+            const html5QrCode = new Html5Qrcode("reader");
+
             const qrCodeSuccessCallback = (decodedText, decodedResult) => {
                 alert(`QR Code scanned: ${decodedText}`);
                 // Stop the scanner
@@ -90,8 +89,8 @@
             html5QrCode.start(
                 { facingMode: "environment" }, // Use rear camera
                 config,
-                qrCodeSuccessCallback)
-            .catch(err => {
+                qrCodeSuccessCallback
+            ).catch(err => {
                 alert('Error starting camera: ' + err);
             });
 
